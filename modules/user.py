@@ -1,0 +1,32 @@
+import sqlite3
+from db import db
+
+class UserModel(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80))
+    password = db.Column(db.String(80))
+
+    # relate table | childern table
+    strategy = db.relationship('StrategyModel', lazy='dynamic')
+
+    def __init__(self,username,password):
+        self.username = username
+        self.password = password
+
+    def json(self):
+        #因為 self.strategy 是 query builder 所以要取得符合的全部 item 就要用 .all() 
+        return {'name': self.username, 'strategy': [item.json() for item in self.strategy.all()]}
+
+    @classmethod
+    def find_by_username(cls,username):
+        # 等同於 SELECT * FROM users WHERE username = username LIMIT 1
+        return cls.query.filter_by(username=username).first()
+
+    @classmethod
+    def find_by_id(cls,_id):
+        return cls.query.filter_by(id=_id).first()
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
