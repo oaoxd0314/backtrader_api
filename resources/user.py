@@ -45,4 +45,4 @@ class UserRegister(Resource):
 class UserList(Resource):
     def get(self):
         # return {'targets': list(map(lambda x : x.json() , targetModel.query.all()))}
-        return {'targets': [x.json() for x in UserModel.query.all()]}
+        return {'users': [x.json() for x in UserModel.query.all()]}

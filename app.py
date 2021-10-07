@@ -25,13 +25,12 @@ def create_tables():
 
 jwt = JWT(app, authenticate, identity_function)
 
-# api.add_resource(Stock,'/stocks')
-# api.add_resource(Strategy,'/strategy/<string:name>')
+api.add_resource(Strategy,'/strategy/<string:name>')
 api.add_resource(Target,'/target/<string:name>')
 api.add_resource(TargetList,'/targets')
 api.add_resource(UserRegister,'/register')
 api.add_resource(UserList,'/admin/allUser')
-# api.add_resource(StrategyList,'/allStrategy')
+api.add_resource(StrategyList,'/allStrategy')
 
 @jwt.auth_response_handler
 def customized_response_handler(access_token, identity):
