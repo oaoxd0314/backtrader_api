@@ -19,7 +19,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI', 'sqlite:/
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api =Api(app)
 
-
 @app.before_first_request
 def create_tables():
     db.create_all()
@@ -40,7 +39,6 @@ def customized_response_handler(access_token, identity):
         'access_token': access_token.decode('utf-8'),
         'user_id': identity.id
     })
-
 
 
 if __name__ == '__main__':
