@@ -16,7 +16,7 @@ class UserModel(db.Model):
 
     def json(self):
         #因為 self.strategy 是 query builder 所以要取得符合的全部 item 就要用 .all() 
-        return {'name': self.username, 'strategy': [item.json() for item in self.strategy.all()]}
+        return {'id':self.id,'name': self.username, 'strategy': [item.json() for item in self.strategy.all()]}
 
     @classmethod
     def find_by_username(cls,username):
