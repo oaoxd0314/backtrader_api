@@ -1,15 +1,22 @@
-from flask_restful import Resource
+from flask_restful import Resource,reqparse
+from flask import request
 from modules.strategy import StrategyModel
 
 
 class Strategy(Resource):
-    def get(self, name):
-        Strategy = StrategyModel.find_by_name(name)
-        if Strategy:
-            return Strategy.json()
+    parser = reqparse.RequestParser()
+
+    @classmethod
+    def get(cls,name):
+        # Strategy = StrategyModel.find_all_by_userID(uid)
+
+        strategy = StrategyModel.find_by_name(name)
+        if strategy:
+            return strategy.json()
         return {'message': 'Strategy not found'}, 404
 
-    def post(self, name):
+    @classmethod
+    def post(cls, name):
         if StrategyModel.find_by_name(name):
             return {'message': "A Strategy with name '{}' already exists.".format(name)}, 400
 

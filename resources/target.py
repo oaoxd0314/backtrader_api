@@ -23,18 +23,20 @@ class Target(Resource):
         return {'message': f"target {name} doesn't exist"},404
 
     def post(self,name):
-        if TargetModel.find_by_name(name):
-            return {'message' : f'target {name} is already exist'}, 400
+        # if TargetModel.find_by_name(name):
+        #     return {'message' : f'target {name} is already exist'}, 400
 
         data = Target.parser.parse_args()
-        target = TargetModel(name,**data)
 
-        try:
-            target.save_to_db()
-        except:
-            return {'message':'insert fail'},500
+        return {'data':data}
+        # target = TargetModel(name,**data)
 
-        return target.json() , 201
+        # try:
+        #     target.save_to_db()
+        # except:
+        #     return {'message':'insert fail'},500
+
+        # return target.json() , 201
     
     def delete(self,name):
         target = TargetModel.find_by_name(name)
