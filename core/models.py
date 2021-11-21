@@ -16,7 +16,7 @@ class User(Base):
     name = Column(String)
     hashed_password = Column(String)
     
-    is_active = Column(Boolean, default=True)
+    is_active = Column(Boolean, server_default='1')
 
     strategy_list = relationship("Strategy", back_populates="owner")
 

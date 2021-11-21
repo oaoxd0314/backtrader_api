@@ -66,7 +66,6 @@ class User(UserBase):
     class Config:
         orm_mode = True
 
-
 # market
 class DetailData(BaseModel):
     id : int

@@ -2,6 +2,7 @@
 */__pycache__
 
 *.db
+*.db-journal
 .env
 .DS_Store
 *.log
