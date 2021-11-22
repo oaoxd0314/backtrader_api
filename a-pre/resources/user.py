@@ -40,7 +40,7 @@ class UserRegister(Resource):
 
         conn.close()
 
-        return result ,201
+        return result, 201
 
 class UserList(Resource):
     def get(self):

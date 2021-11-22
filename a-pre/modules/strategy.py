@@ -7,7 +7,7 @@ class StrategyModel(db.Model):
     name = db.Column(db.String(80))
     
     # child table
-    # 如果啟用 lazy='dynamic' ,self.targets 將不會是一個 list 而是一個 query builder（為了不讓初始等待時間過長 => 只有當需要使用才會用 self.targets 找到擁有該 Strategy.id 的 targets）
+    # 如果啟用 lazy='dynamic', self.targets 將不會是一個 list 而是一個 query builder（為了不讓初始等待時間過長 => 只有當需要使用才會用 self.targets 找到擁有該 Strategy.id 的 targets）
     targets = db.relationship('TargetModel', lazy='dynamic')
 
     # parent table

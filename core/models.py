@@ -31,9 +31,10 @@ class Strategy(Base):
     __tablename__ = "strategy"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
-    description = Column(String, index=True)
+    name = Column(String)
+    description = Column(String)
     initfunds = Column(Integer)
+    unit = Column(String)
     sdate = Column(TIMESTAMP)
     edate = Column(TIMESTAMP)
 
@@ -41,18 +42,18 @@ class Strategy(Base):
 
     owner = relationship("User", back_populates= "strategy_list")
     trade_list = relationship("Trade", back_populates= "strategy")
-    assets_list = relationship("Assets", back_populates= "strategy")
-
-class Assets(Base):
-    __tablename__ = "assets"
+    asset_list = relationship("Asset", back_populates= "strategy")
+class Asset(Base):
+    __tablename__ = "asset"
     id = Column(Integer, primary_key=True, index=True)
     strategy_id = Column(Integer, ForeignKey("strategy.id"))
 
     buy_time = Column(TIMESTAMP)
     unit_price = Column(Integer)  
     quantity = Column(Integer)
+    unit = Column(String)
 
-    strategy = relationship("Strategy", back_populates="assets_list")
+    strategy = relationship("Strategy", back_populates="asset_list")
 
 
 class Trade(Base):

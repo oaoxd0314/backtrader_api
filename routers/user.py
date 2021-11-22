@@ -44,4 +44,3 @@ def update_user(user: schemas.User, db: Session = Depends(get_db)):
         return crud.update_user(db,user)
 
     raise HTTPException(status_code=400, detail=f"user id {user.id} not found, plz check again")
-

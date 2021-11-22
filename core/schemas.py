@@ -4,13 +4,14 @@ from datetime import datetime
 from pydantic import BaseModel
 
 # user
-class AssetsBase(BaseModel):
+class AssetBase(BaseModel):
     name: str
     buy_time: datetime
     unit_price:int
     quantity:int
+    unit: str
 
-class Assets(AssetsBase):
+class Asset(AssetBase):
     id:int
     strategy_id:int
     class Config:
@@ -39,16 +40,17 @@ class Trade(TradeBase):
 
 class StrategyBase(BaseModel):
     name : str
+    description : Optional[str] = None
     initfunds: int
+    unit: str
     sdate: datetime
     edate: datetime
-    description : Optional[str] = None
+    owner_id:int
 
 class Strategy(StrategyBase):
     id:int
-    owner_id:int
     trade_list: List[Trade] = []
-    assets＿list: List[Assets] = []
+    asset_list: List[Asset] = []
     class Config:
         orm_mode = True
 

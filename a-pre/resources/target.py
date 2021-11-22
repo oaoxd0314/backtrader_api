@@ -5,13 +5,13 @@ from modules.target import TargetModel
 class Target(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('price',
-        type=float ,
-        required=True ,
+        type=float, 
+        required=True, 
         help = "this field cannot be left blank"
     )
     parser.add_argument('strategy_id',
-        type=int ,
-        required=True ,
+        type=int, 
+        required=True, 
         help = "Every target need a strategy id"
     )
 
